@@ -1,0 +1,73 @@
+server:
+  port: 9092
+  servlet:
+    context-path: /demo-idp
+
+spring:
+  thymeleaf:
+    cache: false
+  security:
+    saml2:
+      identity-provider:
+        alias: demo-idp
+        sign-metadata: true
+        sign-assertions: true
+        want-requests-signed: true
+        signing-algorithm: RSA_SHA256
+        digest-method: SHA256
+        single-logout-enabled: true
+#        encrypt-assertions: true
+#        key-encryption-algorithm: http://www.w3.org/2001/04/xmlenc#rsa-1_5
+#        data-encryption-algorithm: http://www.w3.org/2001/04/xmlenc#aes256-cbc
+        name-ids:
+          - urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+          - urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+          - urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified
+
+        keys:
+          active:
+            name: active-idp-key
+            private-key: |
+              -----BEGIN RSA PRIVATE KEY-----
+              Proc-Type: 4,ENCRYPTED
+              DEK-Info: DES-EDE3-CBC,9E1553DD160BA37A
+
+              C1F+oHWn7hBDaF36Me5IJgupvaKdTRlqda1bJGkWRFJKielWVFZIwEuzt96Y2zvI
+              KFIsijuLG1k22w3/wVnaALaSxXf/tsgXXIpMWyvA1PGeClg7gTZ/QIizTbtXqrqX
+              kfPyZgBCKvvNDcdNgERBqgqXWj2fsyWxmkbP351JIW8H+KfvFjxKlQ4x8a7clSuk
+              vqtIb6/xpbG5/BOuaJJhnZxHw6cT6RNMz3mRmgnXRY+xPGsirAWhUSQ69/q5eSdI
+              xnEiThBuYc9P6iutaO9jYjekruj4gvItAY7zexA9wlyCIp0PHB0cmG+KDmHzq9oT
+              I7t6MVtuRYftUY4fSE9U3TqMrA5zrIPpZQ1ZQNoPPyUnhRcgOX2H7LhYm9/qIF28
+              4JoJtIv8VcNsrRk3xqdhNd94urI8zO11q+uq8je3fp1exB0GGeG2nkm4fZEB49uv
+              DZ4HkDBGXAbRSeNZaTEJSinsSvhfEwhgAGdnKYuJOjO0NvaGD43Eq95cN8LLd2a+
+              PbukoUvGsWEdRYr/kAXyjEA3jVnlelFmrHYlRkyC8MlK9J2Qm+Y8rIDIXiGHYf9k
+              a1OJ0vXhA+bv4WHZ1c+fUaCUtfG/R4OYa5k+dyzIBVpGHn28Ftpavo5GLSxX9mJ2
+              Be71Hi+qPgtXLqKOQNXaxIZKvhVgkWVJv0kbj1QuuO+v3SU1lDFRIrX7O4MzHYrX
+              gRgmfF0EYToZ/d5ny8uyaAtZ09I/6bl7BoMcpYwU5aPT0fnvB1lsANU+wwdzt+ta
+              2vTpIgEygkTb7Xmd1JRqgO3qrW32JYzd1hO6sThni0jpSRwFbIUXtw==
+              -----END RSA PRIVATE KEY-----
+            passphrase: saml-idppassword
+            certificate: |
+              -----BEGIN CERTIFICATE-----
+              MIICmTCCAgICCQDzzXUiQ2LfozANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
+              VVMxEzARBgNVBAgMCldhc2hpbmd0b24xEjAQBgNVBAcMCVZhbmNvdXZlcjEdMBsG
+              A1UECgwUU3ByaW5nIFNlY3VyaXR5IFNBTUwxETAPBgNVBAsMCHNhbWwtaWRwMSYw
+              JAYDVQQDDB1zYW1sLWlkcC5zcHJpbmcuc2VjdXJpdHkuc2FtbDAeFw0xODA5MTgx
+              NzAxNDBaFw0yODA5MTUxNzAxNDBaMIGQMQswCQYDVQQGEwJVUzETMBEGA1UECAwK
+              V2FzaGluZ3RvbjESMBAGA1UEBwwJVmFuY291dmVyMR0wGwYDVQQKDBRTcHJpbmcg
+              U2VjdXJpdHkgU0FNTDERMA8GA1UECwwIc2FtbC1pZHAxJjAkBgNVBAMMHXNhbWwt
+              aWRwLnNwcmluZy5zZWN1cml0eS5zYW1sMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
+              iQKBgQC7G7DCIgZ0Xz4daexBed5FqCowUPQ0DpLi4BsKE1A2FuPaDkAow4zqJASq
+              XB8kGluLNz7Va6wSwiGZiYSDEFkv9Jr+pYQrthlfdIOz8bQ8x9qAy5hEuV1o7uwY
+              8xFvnJ96AmGBMBfXV05P6nhyX9qblkbsxrJHkKituIb73vaF8wIDAQABMA0GCSqG
+              SIb3DQEBCwUAA4GBAKQgIdllQppnDHq6jSeXpKknH+sMCdk0afrLDfDGunDYrAKi
+              +fMXKytTxLezLZpZgEytoLKB2cq1PJHHpfVYJzuNKaNnvaeRDho729z2FqnO+JLJ
+              pTicr0wSWKVdq5T78tLeC5rrhWJnhVGGI2jvkJXpSxI4rfQDVVwvX89tYBGT
+              -----END CERTIFICATE-----
+        providers:
+        - alias: demo-sp
+          metadata: http://localhost:9091/demo-sp/saml/sp/metadata
+          link-text: Spring Security SAML Demo SP
+        - alias: simplesamlphp
+          metadata: http://saml-s1-2018.cfapps.io/module.php/saml/sp/metadata.php/default-sp
+          link-text: Simple SAML PHP SP

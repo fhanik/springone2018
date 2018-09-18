@@ -1,0 +1,4 @@
+server:
+  port: 9093
+  servlet:
+    context-path: /demo-idp-sp
