@@ -1,0 +1,36 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.5.RELEASE'
+		springSamlVersion = '2.0.0.M16'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+
+configure(allprojects) { project ->
+	apply plugin: 'java'
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
+
+	group = 'demo.springone2018'
+	version = '0.0.1-SNAPSHOT'
+	sourceCompatibility = 1.8
+
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/milestone" }
+	}
+
+
+	dependencies {
+		compile('org.springframework.boot:spring-boot-starter-security')
+		compile("org.springframework.security.extensions:spring-security-saml2-core:${springSamlVersion}")
+		testCompile('org.springframework.boot:spring-boot-starter-test')
+		testCompile('org.springframework.security:spring-security-test')
+	}
+}
