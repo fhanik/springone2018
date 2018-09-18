@@ -2,3 +2,120 @@ server:
   port: 9093
   servlet:
     context-path: /demo-idp-sp
+
+spring:
+  security:
+    saml2:
+      service-provider:
+        alias: demo-idp-sp-service-provider
+        sign-metadata: true
+        sign-requests: true
+        want-assertions-signed: true
+        single-logout-enabled: true
+        name-ids:
+          - urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+        keys:
+          active:
+            name: idp-sp-signing-key-1
+            private-key: |
+              -----BEGIN RSA PRIVATE KEY-----
+              Proc-Type: 4,ENCRYPTED
+              DEK-Info: DES-EDE3-CBC,763B327BC8A1DE90
+
+              1spH219J880P/ShaP0AtCnVpBySmOpVzhuASx9QkAUs7f8STAS5EFrJSCA5w4H+g
+              REIE0uoi1oHo4g8KTmivap3KuiUdVwDbRl6Cz2egHpT0SXgun2uanvwH1VoUhi78
+              AignFKhZbIFgxIUgZVkMGjmyNo1xwU9T5HgNO5yBV/r/IVEDHwuTiFdooR9brFJM
+              AoFPwg6A48yRthLJCGTaTZOW+vKUyftTDJ0IZ5p49zCR1Udn8CotYF7jl52PTDpW
+              u5+sgcOCZ0IKP3kqXAvogoQLYbE/GBLBmrdpAgF6hco4W4xCDYO5Lq8XG0Ci09wu
+              TqlErF8bbI2v1uOjDAssyabjco/4Xp2VcBLEAyR40E55qaDWqnPlRRdy9JZWvzGQ
+              J5V7wbB4SeczhS3UUx4YRUeEQqcsM2PX5H4m8CKpdJwRlvyrsROQduLhYdijhG3I
+              iNSM+BjoexSGDTOf9yULXTHSG+kb08q0QtEnz07uJKlrQ14cdYt8ZfCzxMHhTLQS
+              XplVIXUhI8Oe30T99cymJzvu4ve0Dx+/aImoenk4xDqeLieNKZzWZNlDIO1kAQxn
+              JnjObnENlbYca/DXx8Y15sm9rL8KhYYqz2XQ9OsYT2YeqHOln6nwAJjXmbC3jgjL
+              zPGBRiKEw0F7YtuvKFui7Zj4CsMptmjyovCSdEBALLHXfVXWFi2obn5TfeFvLO/8
+              VvL9bphh+yeq+RjpTEoeamPT62giv4IG3Csz5/BlhCCYvUSNKPcSlxxhZytf9J+7
+              hOsIpK2BJ2zX3NNGO6LeybwaVKi0o1LXEnbHkBfmBGJ1ZL7REZ4qwQ==
+              -----END RSA PRIVATE KEY-----
+
+            passphrase: saml-idp-sppassword
+            certificate: |
+              -----BEGIN CERTIFICATE-----
+              MIICpTCCAg4CCQCVSvP95HKJtjANBgkqhkiG9w0BAQsFADCBljELMAkGA1UEBhMC
+              VVMxEzARBgNVBAgMCldhc2hpbmd0b24xEjAQBgNVBAcMCVZhbmNvdXZlcjEdMBsG
+              A1UECgwUU3ByaW5nIFNlY3VyaXR5IFNBTUwxFDASBgNVBAsMC3NhbWwtaWRwLXNw
+              MSkwJwYDVQQDDCBzYW1sLWlkcC1zcC5zcHJpbmcuc2VjdXJpdHkuc2FtbDAeFw0x
+              ODA5MTgxNzAzMjdaFw0yODA5MTUxNzAzMjdaMIGWMQswCQYDVQQGEwJVUzETMBEG
+              A1UECAwKV2FzaGluZ3RvbjESMBAGA1UEBwwJVmFuY291dmVyMR0wGwYDVQQKDBRT
+              cHJpbmcgU2VjdXJpdHkgU0FNTDEUMBIGA1UECwwLc2FtbC1pZHAtc3AxKTAnBgNV
+              BAMMIHNhbWwtaWRwLXNwLnNwcmluZy5zZWN1cml0eS5zYW1sMIGfMA0GCSqGSIb3
+              DQEBAQUAA4GNADCBiQKBgQC/vw15iXz+jN/XRx0u5byGD0+CrU4L6JLu8NQ+DmbG
+              QQjDIxog7luOPB8MNZeAoqHlxdCwMJ1kVIRqtC2LE9ZVYXJfxMuzpCt0b2sULxnf
+              OshK7CE1Jy8S2idYkNmo/+HrKCXGhC+6F7Z6qN9QowaSH8UnUvryZAZbZB9j4gSH
+              DwIDAQABMA0GCSqGSIb3DQEBCwUAA4GBAEmRgGemvtVjeZcOOCM1S4r/Wd+lEO2W
+              rcYSguCTIDJVq+MZdJ25DNXVlyUqjFTl2QX/+UZGnBpzkCJV8Le2VnUvTDFE08Vq
+              9mtBrvtzSoppRVcN4ekMHc8tHG70f7jnYceXHja7X0kkL3HvCLW/0g/Qjb03gIqS
+              3ePksMa3pWon
+              -----END CERTIFICATE-----
+        providers:
+        - alias: simplesamlphp
+          metadata: http://saml-s1-2018.cfapps.io/saml2/idp/metadata.php
+          link-text: Simple SAML PHP IDP
+      identity-provider:
+        alias: demo-idp-sp-identity-provider
+        sign-metadata: true
+        sign-assertions: true
+        want-requests-signed: true
+        signing-algorithm: RSA_SHA256
+        digest-method: SHA256
+        single-logout-enabled: true
+        encrypt-assertions: true
+        key-encryption-algorithm: http://www.w3.org/2001/04/xmlenc#rsa-1_5
+        data-encryption-algorithm: http://www.w3.org/2001/04/xmlenc#aes256-cbc
+        name-ids:
+          - urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+        keys:
+          active:
+            name: idp-sp-signing-key-1
+            private-key: |
+              -----BEGIN RSA PRIVATE KEY-----
+              Proc-Type: 4,ENCRYPTED
+              DEK-Info: DES-EDE3-CBC,763B327BC8A1DE90
+
+              1spH219J880P/ShaP0AtCnVpBySmOpVzhuASx9QkAUs7f8STAS5EFrJSCA5w4H+g
+              REIE0uoi1oHo4g8KTmivap3KuiUdVwDbRl6Cz2egHpT0SXgun2uanvwH1VoUhi78
+              AignFKhZbIFgxIUgZVkMGjmyNo1xwU9T5HgNO5yBV/r/IVEDHwuTiFdooR9brFJM
+              AoFPwg6A48yRthLJCGTaTZOW+vKUyftTDJ0IZ5p49zCR1Udn8CotYF7jl52PTDpW
+              u5+sgcOCZ0IKP3kqXAvogoQLYbE/GBLBmrdpAgF6hco4W4xCDYO5Lq8XG0Ci09wu
+              TqlErF8bbI2v1uOjDAssyabjco/4Xp2VcBLEAyR40E55qaDWqnPlRRdy9JZWvzGQ
+              J5V7wbB4SeczhS3UUx4YRUeEQqcsM2PX5H4m8CKpdJwRlvyrsROQduLhYdijhG3I
+              iNSM+BjoexSGDTOf9yULXTHSG+kb08q0QtEnz07uJKlrQ14cdYt8ZfCzxMHhTLQS
+              XplVIXUhI8Oe30T99cymJzvu4ve0Dx+/aImoenk4xDqeLieNKZzWZNlDIO1kAQxn
+              JnjObnENlbYca/DXx8Y15sm9rL8KhYYqz2XQ9OsYT2YeqHOln6nwAJjXmbC3jgjL
+              zPGBRiKEw0F7YtuvKFui7Zj4CsMptmjyovCSdEBALLHXfVXWFi2obn5TfeFvLO/8
+              VvL9bphh+yeq+RjpTEoeamPT62giv4IG3Csz5/BlhCCYvUSNKPcSlxxhZytf9J+7
+              hOsIpK2BJ2zX3NNGO6LeybwaVKi0o1LXEnbHkBfmBGJ1ZL7REZ4qwQ==
+              -----END RSA PRIVATE KEY-----
+
+            passphrase: saml-idp-sppassword
+            certificate: |
+              -----BEGIN CERTIFICATE-----
+              MIICpTCCAg4CCQCVSvP95HKJtjANBgkqhkiG9w0BAQsFADCBljELMAkGA1UEBhMC
+              VVMxEzARBgNVBAgMCldhc2hpbmd0b24xEjAQBgNVBAcMCVZhbmNvdXZlcjEdMBsG
+              A1UECgwUU3ByaW5nIFNlY3VyaXR5IFNBTUwxFDASBgNVBAsMC3NhbWwtaWRwLXNw
+              MSkwJwYDVQQDDCBzYW1sLWlkcC1zcC5zcHJpbmcuc2VjdXJpdHkuc2FtbDAeFw0x
+              ODA5MTgxNzAzMjdaFw0yODA5MTUxNzAzMjdaMIGWMQswCQYDVQQGEwJVUzETMBEG
+              A1UECAwKV2FzaGluZ3RvbjESMBAGA1UEBwwJVmFuY291dmVyMR0wGwYDVQQKDBRT
+              cHJpbmcgU2VjdXJpdHkgU0FNTDEUMBIGA1UECwwLc2FtbC1pZHAtc3AxKTAnBgNV
+              BAMMIHNhbWwtaWRwLXNwLnNwcmluZy5zZWN1cml0eS5zYW1sMIGfMA0GCSqGSIb3
+              DQEBAQUAA4GNADCBiQKBgQC/vw15iXz+jN/XRx0u5byGD0+CrU4L6JLu8NQ+DmbG
+              QQjDIxog7luOPB8MNZeAoqHlxdCwMJ1kVIRqtC2LE9ZVYXJfxMuzpCt0b2sULxnf
+              OshK7CE1Jy8S2idYkNmo/+HrKCXGhC+6F7Z6qN9QowaSH8UnUvryZAZbZB9j4gSH
+              DwIDAQABMA0GCSqGSIb3DQEBCwUAA4GBAEmRgGemvtVjeZcOOCM1S4r/Wd+lEO2W
+              rcYSguCTIDJVq+MZdJ25DNXVlyUqjFTl2QX/+UZGnBpzkCJV8Le2VnUvTDFE08Vq
+              9mtBrvtzSoppRVcN4ekMHc8tHG70f7jnYceXHja7X0kkL3HvCLW/0g/Qjb03gIqS
+              3ePksMa3pWon
+              -----END CERTIFICATE-----
+        providers:
+        - alias: demo-sp
+          metadata: http://localhost:9091/demo-sp/saml/sp/metadata
+          link-text: Spring Security SAML Demo SP
