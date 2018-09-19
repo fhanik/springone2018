@@ -1,0 +1,10 @@
+include "saml-sp"
+include "saml-idp"
+
+rootProject.name = 'demo'
+
+rootProject.children.each { p ->
+	p.name = "demo-${p.name}"
+}
+
+

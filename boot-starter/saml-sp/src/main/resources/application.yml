@@ -1,0 +1,12 @@
+server:
+  port: 9091
+  servlet:
+    context-path: /demo-sp
+
+
+spring:
+  thymeleaf:
+    cache: false
+  security:
+    saml2:
+      service-provider:

@@ -1,0 +1,46 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.5.RELEASE'
+		springSamlVersion = '2.0.0.M17'
+	}
+	repositories {
+		mavenCentral()
+        maven { url "https://repo.spring.io/plugins-release" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.springframework.build.gradle:propdeps-plugin:0.0.7")
+	}
+}
+
+
+configure(subprojects) { project ->
+
+	apply plugin: 'java'
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
+    apply plugin: "propdeps"
+
+	group = 'demo.springone2018'
+	version = '0.0.1-SNAPSHOT'
+	sourceCompatibility = 1.8
+
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/milestone" }
+	}
+
+	jar {
+		enabled = true
+	}
+
+	dependencies {
+        provided("javax.servlet:javax.servlet-api:3.1.0")
+		compile('org.springframework.boot:spring-boot-starter-web')
+		compile('org.springframework.boot:spring-boot-starter-security')
+		compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+		compile("org.springframework.security.extensions:spring-security-saml2-core:${springSamlVersion}")
+		testCompile('org.springframework.boot:spring-boot-starter-test')
+		testCompile('org.springframework.security:spring-security-test')
+	}
+}

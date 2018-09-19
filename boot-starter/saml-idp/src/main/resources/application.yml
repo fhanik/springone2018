@@ -1,0 +1,11 @@
+server:
+  port: 9092
+  servlet:
+    context-path: /demo-idp
+
+spring:
+  thymeleaf:
+    cache: false
+  security:
+    saml2:
+      identity-provider:
