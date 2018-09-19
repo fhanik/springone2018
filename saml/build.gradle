@@ -14,7 +14,7 @@ buildscript {
 }
 
 
-configure(allprojects) { project ->
+configure(subprojects) { project ->
 
 	apply plugin: 'java'
 	apply plugin: 'org.springframework.boot'
