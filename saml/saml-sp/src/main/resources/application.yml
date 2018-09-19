@@ -148,4 +148,4 @@ spring:
           name-id: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         - alias: simplesamlphp
           metadata: http://saml-s1-2018.cfapps.io/saml2/idp/metadata.php
-          link-text: Simple SAML PHP IDP
+          link-text: Simple SAML PHP IDP on Cloud Foundry

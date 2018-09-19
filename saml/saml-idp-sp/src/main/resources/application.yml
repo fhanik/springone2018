@@ -59,7 +59,7 @@ spring:
         providers:
         - alias: simplesamlphp
           metadata: http://saml-s1-2018.cfapps.io/saml2/idp/metadata.php
-          link-text: Simple SAML PHP IDP
+          link-text: Simple SAML PHP IDP on Cloud Foundry
       identity-provider:
         alias: demo-idp-sp-identity-provider
         sign-metadata: true
@@ -118,4 +118,4 @@ spring:
         providers:
         - alias: demo-sp
           metadata: http://localhost:9091/demo-sp/saml/sp/metadata
-          link-text: Spring Security SAML Demo SP
+          link-text: Spring Security SAML SP/9091

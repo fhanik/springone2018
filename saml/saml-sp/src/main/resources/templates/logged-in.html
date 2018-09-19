@@ -36,6 +36,14 @@
 <h1>Success</h1>
 <div>
 	<span style="font-weight:bold">You are authenticated!</span>
+	<h3>Authentication Attributes:</h3>
+	<ul>
+		<li th:each="attribute : ${attributes}"
+			th:text="'Name:' +  ${attribute.name} + 'Values:' + ${attribute.values}"/>
+	</ul>
+	<h3>Assertion:</h3>
+	<pre th:lang="xml" th:if="${xml}" th:text="${xml}"/>
+	<p th:unless="${xml}" th:text="No XML Assertion Present"/>
 </div>
 </body>
 </html>
