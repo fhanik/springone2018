@@ -43,9 +43,10 @@
 			th:text="'Name:' +  ${attribute.name} + 'Values:' + ${attribute.values}"/>
 	</ul>
 	<h3>Assertion:</h3>
-	<pre th:lang="xml" th:if="${xml}" th:text="${xml}"/>
+	<pre th:lang="xml" th:if="${xml}" th:text="${xml}" class="prettyprint"/>
 	<p th:unless="${xml}" th:text="No XML Assertion Present"/>
 
 </div>
 </body>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 </html>
