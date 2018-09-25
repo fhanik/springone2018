@@ -1,13 +1,5 @@
 <?php
-/**
- * SAML 2.0 remote SP metadata for simpleSAMLphp.
- *
- * See: https://simplesamlphp.org/docs/stable/simplesamlphp-reference-sp-remote
- */
 
-/*
- * Example simpleSAMLphp SAML 2.0 SP
- */
 $metadata['http://localhost:9091/demo-sp'] = array(
     'AssertionConsumerService' => 'http://localhost:9091/demo-sp/saml/sp/SSO/alias/demo-sp',
     'SingleLogoutService' => 'http://localhost:9091/demo-sp/saml/sp/logout/alias/demo-sp',
