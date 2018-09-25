@@ -69,7 +69,9 @@ public class IdentityProviderSecurityConfiguration {
 				.authorizeRequests()
 				.antMatchers("/**").authenticated()
 				.and()
-				.userDetailsService(beanConfig.userDetailsService()).formLogin()
+				.userDetailsService(beanConfig.userDetailsService())
+				.formLogin()
+				.successForwardUrl("/")
 			;
 		}
 	}

@@ -118,4 +118,4 @@ spring:
         providers:
         - alias: demo-sp
           metadata: http://localhost:9091/demo-sp/saml/sp/metadata
-          link-text: Spring Security SAML SP/9091
+          link-text: Spring Security SAML SP (local)
