@@ -68,6 +68,6 @@ spring:
         - alias: demo-sp
           metadata: http://localhost:9091/demo-sp/saml/sp/metadata
           link-text: Spring Security SAML SP/9091
-        - alias: simplesamlphp
-          metadata: http://saml-s1-2018.cfapps.io/module.php/saml/sp/metadata.php/default-sp
-          link-text: Simple SAML PHP SP on Cloud Foundry
+#        - alias: simplesamlphp
+#          metadata: http://saml-s1-2018.cfapps.io/module.php/saml/sp/metadata.php/default-sp
+#          link-text: Simple SAML PHP SP on Cloud Foundry

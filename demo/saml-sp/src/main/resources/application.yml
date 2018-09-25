@@ -136,6 +136,7 @@ spring:
                 mrvKHM2LZTp/cIUpxcNpVRyDA4iVNDc7V3qszaWP9ZIswAYnvmyDL2UHVDLE8xoG
                 z/AkxsRNN9VXNHewjQO605umiAKJ
                 -----END CERTIFICATE-----
+
         providers:
         - alias: spring-security-saml-idp
           metadata: http://localhost:9092/demo-idp/saml/idp/metadata
@@ -146,6 +147,6 @@ spring:
           metadata: http://localhost:9093/demo-idp-sp/saml/idp/metadata
           link-text: Spring Security SAML IDP/9093
           name-id: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
-        - alias: simplesamlphp
-          metadata: http://saml-s1-2018.cfapps.io/saml2/idp/metadata.php
-          link-text: Simple SAML PHP IDP on Cloud Foundry
+#        - alias: simplesamlphp
+#          metadata: http://saml-s1-2018.cfapps.io/saml2/idp/metadata.php
+#          link-text: Simple SAML PHP IDP on Cloud Foundry
