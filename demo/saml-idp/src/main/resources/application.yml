@@ -16,9 +16,9 @@ spring:
         signing-algorithm: RSA_SHA256
         digest-method: SHA256
         single-logout-enabled: true
-#        encrypt-assertions: true
-#        key-encryption-algorithm: http://www.w3.org/2001/04/xmlenc#rsa-1_5
-#        data-encryption-algorithm: http://www.w3.org/2001/04/xmlenc#aes256-cbc
+        encrypt-assertions: false
+        key-encryption-algorithm: http://www.w3.org/2001/04/xmlenc#rsa-1_5
+        data-encryption-algorithm: http://www.w3.org/2001/04/xmlenc#aes256-cbc
         name-ids:
           - urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
           - urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
@@ -68,6 +68,6 @@ spring:
         - alias: demo-sp
           metadata: http://localhost:9091/demo-sp/saml/sp/metadata
           link-text: Spring Security SAML SP/9091
-#        - alias: simplesamlphp
-#          metadata: http://saml-s1-2018.cfapps.io/module.php/saml/sp/metadata.php/default-sp
-#          link-text: Simple SAML PHP SP on Cloud Foundry
+        - alias: simplesamlphp
+          metadata: http://saml-s1-2018.cfapps.io/module.php/saml/sp/metadata.php/default-sp
+          link-text: Simple SAML PHP SP on Cloud Foundry
