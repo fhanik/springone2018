@@ -42,5 +42,6 @@ configure(subprojects) { project ->
 		compile("org.springframework.security.extensions:spring-security-saml2-core:${springSamlVersion}")
 		testCompile('org.springframework.boot:spring-boot-starter-test')
 		testCompile('org.springframework.security:spring-security-test')
+		implementation('org.springframework.boot:spring-boot-configuration-processor')
 	}
 }

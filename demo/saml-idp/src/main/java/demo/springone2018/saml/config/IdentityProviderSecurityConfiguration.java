@@ -71,7 +71,8 @@ public class IdentityProviderSecurityConfiguration {
 				.and()
 				.userDetailsService(beanConfig.userDetailsService())
 				.formLogin()
-				.successForwardUrl("/")
+				//.successForwardUrl("/")
+
 			;
 		}
 	}
